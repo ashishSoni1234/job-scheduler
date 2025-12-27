@@ -117,6 +117,7 @@ Response
 
 [
  {
+ 
     "execution_time": 1766835200993,
     "status_code": 200,
     "duration_ms": 512,
@@ -132,6 +133,7 @@ Response
 
 [
   {
+  
     "job_id": "uuid",
     "status_code": 500,
     "message": "Job execution failed",
@@ -147,4 +149,22 @@ Steps:-
   4.npm run dev
    Server starts at:
     http://localhost:3000
-     Then for  api testing , we can simply use VS code Thunder Client , to test method like POST, PUT , GET etc.
+   Then for  api testing , we can simply use VS code Thunder Client , to test method like POST, PUT , GET etc.
+# Sample Dataset:
+[
+  {
+  
+    "job_name": "successful_job_example",
+    "schedule": "*/10 * * * * *",
+    "api": "http://localhost:3000/test",
+    "type": "ATLEAST_ONCE",
+    "description": "A sample job that executes successfully every 10 seconds"
+  },
+  {
+    "job_name": "failing_job_example",
+    "schedule": "*/5 * * * * *",
+    "api": "http://localhost:3000/test-fail",
+    "type": "ATLEAST_ONCE",
+    "description": "A sample job that fails and triggers alert every 5 seconds"
+  }
+]
