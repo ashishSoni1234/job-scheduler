@@ -47,9 +47,9 @@ Alerts
 
 # Components:-
 
-API Layer: Exposes REST endpoints for job and alert management
+ API Layer: Exposes REST endpoints for job and alert management
 
-Scheduler: Continuously evaluates upcoming jobs using a priority queue
+ Scheduler: Continuously evaluates upcoming jobs using a priority queue
 
 Worker: Executes HTTP requests asynchronously
 
@@ -141,10 +141,10 @@ Response
 
 # How to Run the Project:-
 Steps:-
-git clone https://github.com/ashishSoni1234/job-scheduler.git
-cd job-scheduler
-npm install
-npm run dev
-Server starts at:
-http://localhost:3000
-Then for  api testing , we can simply use VS code Thunder Client , to test method like POST, PUT , GET etc.
+  1.git clone https://github.com/ashishSoni1234/job-scheduler.git
+  2.cd job-scheduler
+  3.npm install
+  4.npm run dev
+   Server starts at:
+    http://localhost:3000
+     Then for  api testing , we can simply use VS code Thunder Client , to test method like POST, PUT , GET etc.
