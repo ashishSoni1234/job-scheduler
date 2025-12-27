@@ -1,6 +1,7 @@
 const axios = require("axios");
 const db = require("../db/database");
 const { v4: uuid } = require("uuid");
+const { notifyFailure } = require("../utils/alert");
 
 async function execute(job) {
   const start = Date.now();
@@ -16,6 +17,7 @@ async function execute(job) {
       status = res.status;
       success = 1;
     } catch (e) {
+        notifyFailure(job.id, status);
       console.error(`Job ${job.id} execution error:`, e && e.message ? e.message : e);
       if (e && e.response && e.response.status) status = e.response.status;
     }

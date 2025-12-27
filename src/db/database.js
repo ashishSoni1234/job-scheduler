@@ -22,4 +22,14 @@ db.prepare(`
   )
 `).run();
 
+db.prepare(`
+  CREATE TABLE IF NOT EXISTS alerts (
+    id TEXT PRIMARY KEY,
+    job_id TEXT,
+    alert_time INTEGER,
+    status_code INTEGER,
+    message TEXT
+  )
+`).run();
+
 module.exports = db;

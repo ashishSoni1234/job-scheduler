@@ -15,6 +15,14 @@ function createJob(schedule, apiUrl) {
   return { id, nextRun };
 }
 
+function updateJob(id, schedule, apiUrl) {
+  const nextRun = getNextRun(schedule);
+  db.prepare(`
+    UPDATE jobs SET schedule=?, api_url=?, next_run_time=? WHERE id=?
+  `).run(schedule, apiUrl, nextRun, id);
+  return { id, nextRun };
+}
+
 function getExecutions(jobId) {
   return db.prepare(`
     SELECT * FROM job_executions
@@ -23,5 +31,17 @@ function getExecutions(jobId) {
     LIMIT 5
   `).all(jobId);
 }
+// extra added 
+function updateJob(jobId, schedule, apiUrl) {
+  const nextRun = getNextRun(schedule);
 
-module.exports = { createJob, getExecutions };
+  db.prepare(`
+    UPDATE jobs
+    SET schedule = ?, api_url = ?, next_run_time = ?
+    WHERE id = ?
+  `).run(schedule, apiUrl, nextRun, jobId);
+
+  return { jobId, nextRun };
+}
+
+module.exports = { createJob, getExecutions,updateJob };

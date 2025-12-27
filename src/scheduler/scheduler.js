@@ -9,6 +9,10 @@ function addJob(id, nextRun) {
   pq.push({ id, nextRun });
 }
 
+function updateJob(id, nextRun) {
+  pq.update(id, nextRun);
+}
+
 async function start() {
   const jobs = db.prepare("SELECT * FROM jobs").all();
   jobs.forEach(j => pq.push({ id: j.id, nextRun: j.next_run_time }));
@@ -41,5 +45,13 @@ async function start() {
 function sleep(ms) {
   return new Promise(r => setTimeout(r, ms));
 }
+// extra
+function rescheduleJob(id, nextRun) {
+  pq.update(id, nextRun);
+}
 
-module.exports = { start, addJob };
+function removeJob(id) {
+  return pq.remove(id);
+}
+
+module.exports = { start, addJob, rescheduleJob, updateJob, removeJob };
